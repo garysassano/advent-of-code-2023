@@ -3,9 +3,6 @@ bring regex;
 
 let content = fs.readFile("input");
 let lines = content.split("\n");
-
-let maxCubes = { "red": 12, "green": 13, "blue": 14 };
-let sumOfPossibleGameIds = 0;
 let var total = 0;
 
 for line in lines {
