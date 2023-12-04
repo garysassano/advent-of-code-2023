@@ -11,27 +11,36 @@ for line in lines {
     let gameIdStr = gameData.at(0).trim().split(" ");
     let gameId = std.Number.fromStr(gameIdStr.at(1));
 
-    // Assume the game is possible until proven otherwise
-    let var isPossible = true;
+    let var maxRed = 0;
+    let var maxGreen = 0;
+    let var maxBlue = 0;
 
     let cubeSets = gameData.at(1).split(";");
     for cubeSet in cubeSets {
         let cubes = cubeSet.trim().split(", ");
         let tempMap = MutMap<num> {};
+
         for cube in cubes {
             let cubeSplit = cube.split(" ");
             tempMap.set(cubeSplit.at(1),num.fromStr(cubeSplit.at(0)));
         }
-        let red = tempMap.tryGet("red") ?? 0;
-        let green = tempMap.tryGet("green") ?? 0;
-        let blue = tempMap.tryGet("blue") ?? 0;
-        if red > 12 || green > 13 || blue > 14 {
-            isPossible = false;
-            break;
+
+        let red = tempMap.tryGet("red") ?? 1;
+        let green = tempMap.tryGet("green") ?? 1;
+        let blue = tempMap.tryGet("blue") ?? 1;
+
+        if red > maxRed {
+            maxRed = red;
+        }
+        if green > maxGreen {
+            maxGreen = green;
+        }
+        if blue > maxBlue {
+            maxBlue = blue;
         }
     }
 
-    if (isPossible) {
+    if !(maxRed > 12 || maxGreen > 13 || maxBlue > 14) {
         total += gameId;
     }
 }
