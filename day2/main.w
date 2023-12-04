@@ -25,9 +25,9 @@ for line in lines {
             tempMap.set(cubeSplit.at(1),num.fromStr(cubeSplit.at(0)));
         }
 
-        let red = tempMap.tryGet("red") ?? 1;
-        let green = tempMap.tryGet("green") ?? 1;
-        let blue = tempMap.tryGet("blue") ?? 1;
+        let red = tempMap.tryGet("red") ?? 0;
+        let green = tempMap.tryGet("green") ?? 0;
+        let blue = tempMap.tryGet("blue") ?? 0;
 
         if red > maxRed {
             maxRed = red;
@@ -40,9 +40,13 @@ for line in lines {
         }
     }
 
-    if !(maxRed > 12 || maxGreen > 13 || maxBlue > 14) {
-        total += gameId;
-    }
+    // part1
+    // if !(maxRed > 12 || maxGreen > 13 || maxBlue > 14) {
+    //     total += gameId;
+    // }
+
+    // part2
+    total += (maxRed*maxGreen*maxBlue);
 }
 
 log("{total}");
