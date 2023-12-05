@@ -1,12 +1,10 @@
 bring fs;
-bring regex;
 
 let content = fs.readFile("input");
 let lines = content.split("\n");
 let var total = 0;
 
 for line in lines {
-    // Extract the game ID
     let gameData = line.split(":");
     let gameIdStr = gameData.at(0).trim().split(" ");
     let gameId = std.Number.fromStr(gameIdStr.at(1));
