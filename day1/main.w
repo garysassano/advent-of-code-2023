@@ -1,5 +1,4 @@
 bring fs;
-bring regex;
 
 let replaceWords = (s: str): str => {
     let replacements = {
@@ -25,7 +24,8 @@ let replaceWords = (s: str): str => {
 };
 
 let isDigit = (c: str) => {
-    return regex.match("\\d", c);
+    let r = regex.compile("\\d");
+    return r.test(c);
 };
 
 let strToArray = (s: str): MutArray<str> => {
@@ -53,7 +53,7 @@ let calibrationValue = (s: str): num => {
         }
     }
 
-    return(std.Number.fromStr("{firstDigit}{lastDigit}"));
+    return(std.Number.fromStr("{firstDigit!}{lastDigit!}"));
 };
 
 let content = fs.readFile("input");
